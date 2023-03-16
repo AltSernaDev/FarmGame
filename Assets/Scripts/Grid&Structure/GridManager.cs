@@ -9,11 +9,19 @@ public class GridManager : MonoBehaviour
     [SerializeField] Grid[,] grids;
 
     [SerializeField] float cellSize;
-    [SerializeField] GameObject cellPrefab;
     [SerializeField] int[] gridSize = new int[2];
+
+    [SerializeField] GameObject cellPrefab;
+
+    public static GridManager Instance;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+
         if (size[0] < unlockSize[0])
             unlockSize[0] = size[0];
 
@@ -45,5 +53,21 @@ public class GridManager : MonoBehaviour
                 currentGrid.transform.position = new Vector3(i * cellSize * gridSize[0], currentGrid.transform.position.y, j * cellSize * gridSize[1]);
             }
         }
+    }
+
+    public Cell PositionToCell(Vector3 woldPosition)
+    {
+        float positionX = woldPosition.x, 
+            positionY = woldPosition.z, 
+            globalCellX = positionX/cellSize,
+            globalCellY = positionY/cellSize;
+
+        Grid currentGrid_;
+        Cell currentCell_;
+
+        currentGrid_ = grids[(int)globalCellX / gridSize[0], (int)globalCellY / gridSize[0]];
+        currentCell_ = currentGrid_.cells[(int)(globalCellX % gridSize[0]), (int)(globalCellX % gridSize[0])];
+
+        return currentCell_;
     }
 }

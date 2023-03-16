@@ -5,7 +5,7 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     [SerializeField] int[] size = new int[2];
-    [SerializeField] Cell[,] cells;
+    public Cell[,] cells;
     public bool unlock;
 
     public void Initial(int sizeX, int sizeY, GameObject cellPrefab, float cellSize)

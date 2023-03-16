@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[System.Serializable][RequireComponent(typeof(BoxCollider))]
+[System.Serializable][RequireComponent(typeof(BoxCollider))]
 public class Structure : MonoBehaviour
 {
     public StructureSo structureSo; // can change to prefabs
@@ -25,9 +25,9 @@ public class Structure : MonoBehaviour
         levelUpeTime = structureSo.initialLevelUpTime;
         levelUpePrice = structureSo.initialLevelUpPrice;
 
-        /*gameObject.GetComponent<BoxCollider>().size = new Vector3(structureSo.size[0], 1, structureSo.size[1]);
+        gameObject.GetComponent<BoxCollider>().size = new Vector3(structureSo.size[0], 1, structureSo.size[1]);
         gameObject.GetComponent<BoxCollider>().center = new Vector3(structureSo.size[0]/2, 0.5f, structureSo.size[1]/2);
-        gameObject.GetComponent<BoxCollider>().enabled = false;*/
+        //gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 
     public void Demolish()
